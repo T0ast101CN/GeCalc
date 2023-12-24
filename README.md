@@ -21,6 +21,6 @@ Project URL - https://github.com/T0ast101CN/GeCalc
 >This calculator follows CC BY-SA 4.0 license
 
 > [!TIP]
-> Help GeCalc to be better by [Creating an issue](https://github.com/T0ast101CN/GeCalc/issues) or Sending email to t0ast101cn@qq.com
+> Help GeCalc to be better by [Creating an issue](https://github.com/T0ast101CN/GeCalc/issues) or Sending email to t0ast@t0ast.cn
 
 
