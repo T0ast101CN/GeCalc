@@ -17,6 +17,12 @@ C++ Coding - by T0astForeveR @ https://space.bilibili.com/225255578
 
 Project URL - https://github.com/T0ast101CN/GeCalc
 
-This calculator follows CC BY-SA 4.0 license
+> [!NOTE]
+>This calculator follows CC BY-SA 4.0 license
+
+> [!TIP]
+> Help GeCalc to be better by [Creating an issue][1]
+
+[1]:https://github.com/T0ast101CN/GeCalc/issues
 
 
