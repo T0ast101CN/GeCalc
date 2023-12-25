@@ -72,7 +72,7 @@ void init(){    //Initializing splash
     printf("@   @ @     @   @ @   @ @  @   @   \n");
     printf(" @@@   @@@@  @@@   @@@@  @  @@@    \n");
     printf("--------------------------------\n");
-    printf("General Calculator by T0astForeveR & Faver\nVersion 0.1.9\tBuild 2312233\tSystemTime %lld\n", timeStamp);
+    printf("General Calculator by T0astForeveR & Faver\nVersion 0.2.0\tBuild 2312251\tSystemTime %lld\n", timeStamp);
     Sleep(1500);
     clearScreen();
 }
@@ -87,7 +87,7 @@ void about(){   //About page
     printf("@   @ @     @   @ @   @ @  @   @   \n");
     printf(" @@@   @@@@  @@@   @@@@  @  @@@    \n");
     printf("--------------------------------\n");
-    printf("General Calculator by T0astForeveR & Faver\nVersion 0.1.9\tBuild 2312233\tSystem Time %lld\n", timeStamp);
+    printf("General Calculator by T0astForeveR & Faver\nVersion 0.2.0\tBuild 2312251\tSystem Time %lld\n", timeStamp);
     printf("--------------------------------\n");
     printf("CrossSolve - by Faver @ https://space.bilibili.com/501018696\n");
     printf("C++ Coding - by T0astForeveR @ https://space.bilibili.com/225255578\n");
@@ -170,6 +170,7 @@ int main() {
                                 clearScreen();
                                 printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                                 system("pause");
+                                clearScreen();
                                 goto opAdd;
                             }
                         }
@@ -204,6 +205,7 @@ int main() {
                                 clearScreen();
                                 printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                                 system("pause");
+                                clearScreen();
                                 goto opMin;
                             }
                         }
@@ -238,6 +240,7 @@ int main() {
                                 clearScreen();
                                 printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                                 system("pause");
+                                clearScreen();
                                 goto opMul;
                             }
                         }
@@ -272,6 +275,7 @@ int main() {
                                 clearScreen();
                                 printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                                 system("pause");
+                                clearScreen();
                                 goto opDiv;
                             }
                         }
@@ -306,6 +310,7 @@ int main() {
                                 clearScreen();
                                 printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                                 system("pause");
+                                clearScreen();
                                 goto opPow;
                             }
                         }
