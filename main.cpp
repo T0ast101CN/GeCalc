@@ -97,7 +97,7 @@ void about(){   //About page
     system("pause");
 }
 
-double rad(double a){   //Angle to radian
+double deg2rad(double a){   //Angle to radian
     const double PI = 3.14159265;
     return a*PI/180;
 }
@@ -116,15 +116,23 @@ double variance(const std::vector<double>& data){
     return m / data.size();
 }
 
-double median(std::vector<double>& data){
-    if(!data.size()%2) return ((data[data.size()/2-1]+data[data.size()/2])/2);
+void bubbleSort(std::vector<double>& data){
+    for(int i=data.size()-1;i>0;i--)
+        for(int j=0;j<i;j++)
+            if(data[j]>data[j+1]) std::swap(data[j],data[j+1]);
+}
+
+double median(std::vector<double>& oriData){
+    std::vector<double> data(oriData.begin(),oriData.end());
+    bubbleSort(data);
+    if(data.size()%2==0) return ((data[data.size()/2-1]+data[data.size()/2])/2);
     else return data[(data.size()+1)/2-1];
 }
 
 int main() {
     init();
     while("false"){
-        printf("Enter calculation type\n> 1 | arithmetics\n> 2 | tri-function\n> 3 | quad-equation\n> 4 | statistics\n> 9 | about\n> 0 | exit\n\n> ");
+        printf(">>\n\nEnter calculation type\n> 1 | arithmetics\n> 2 | tri-function\n> 3 | quad-equation\n> 4 | statistics\n> 9 | about\n> 0 | exit\n\n> ");
         int t; scanf("%d", &t);
         switch (t) {
             case 0: return 0;
@@ -135,22 +143,27 @@ int main() {
             case 1: {   //Arithmetics
                 arith:
                 clearScreen();
-                if(prevResult != DBL_MAX) printf("Previous result = %lf\n--------------------------------\n", prevResult);
-                printf("Enter arithmetic type\n> 1 | add(+)\n> 2 | subtract(-)\n> 3 | multiply(*)\n> 4 | divide(/)\n> 5 | power(^)\n> 6 | sq-root(^(1/2))\n> 7 | cb-root(^(1/3))\n> 0 | return\n\n> ");
+                printf(">> arithmetics\n");
+                if(prevResult != DBL_MAX) printf("--------------------------------\nPrevious result = %lf\n--------------------------------", prevResult);
+                printf("\nEnter arithmetic type\n> 1 | add(+)\n> 2 | subtract(-)\n> 3 | multiply(*)\n> 4 | divide(/)\n> 5 | power(^)\n> 6 | sq-root(^(1/2))\n> 7 | cb-root(^(1/3))\n> 0 | return\n\n>");
                 int u; scanf("%d", &u);
                 switch (u) {
                     case 0: break;
                     case 1: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> add(+)\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
                         add:
+                        printf(">> arithmetics >> add(+)\n\n");
                         printf("%lf + ", prevResult);
                         double b;
                         scanf("%lf", &b);
                         clearScreen();
                         opAdd:
+                        printf(">> arithmetics >> add(+) >> result\n\n");
                         printf("%lf + %lf = %lf\n", prevResult, b, prevResult + b);
                         prevResult += b;
                         printf("--------------------------------\n");
@@ -177,15 +190,19 @@ int main() {
                     }
                     case 2: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> subtract(-)\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
                         min:
+                        printf(">> arithmetics >> subtract(-)\n\n");
                         printf("%lf - ", prevResult);
                         double b;
                         scanf("%lf", &b);
                         clearScreen();
                         opMin:
+                        printf(">> arithmetics >> subtract(-) >> result\n\n");
                         printf("%lf - %lf = %lf\n", prevResult, b, prevResult - b);
                         prevResult -= b;
                         printf("--------------------------------\n");
@@ -212,15 +229,19 @@ int main() {
                     }
                     case 3: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> multiply(*)\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
                         mul:
+                        printf(">> arithmetics >> multiply(*)\n\n");
                         printf("%lf * ", prevResult);
                         double b;
                         scanf("%lf", &b);
                         clearScreen();
                         opMul:
+                        printf(">> arithmetics >> multiply(*) >> result\n\n");
                         printf("%lf * %lf = %lf\n", prevResult, b, prevResult * b);
                         prevResult *= b;
                         printf("--------------------------------\n");
@@ -247,15 +268,19 @@ int main() {
                     }
                     case 4: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> divide(/)\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
                         div:
+                        printf(">> arithmetics >> divide(/)\n\n");
                         printf("%lf / ", prevResult);
                         double b;
                         scanf("%lf", &b);
                         clearScreen();
                         opDiv:
+                        printf(">> arithmetics >> divide(/) >> result\n\n");
                         printf("%lf / %lf = %lf\n", prevResult, b, prevResult / b);
                         prevResult /= b;
                         printf("--------------------------------\n");
@@ -282,15 +307,19 @@ int main() {
                     }
                     case 5: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> power(^)\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
                         pow:
+                        printf(">> arithmetics >> power(^)\n\n");
                         printf("%lf ^ ", prevResult);
                         double b;
                         scanf("%lf", &b);
                         clearScreen();
                         opPow:
+                        printf(">> arithmetics >> power(^) >> result\n\n");
                         printf("%lf ^ %lf = %lf\n", prevResult, b, pow(prevResult, b));
                         prevResult = pow(prevResult, b);
                         printf("--------------------------------\n");
@@ -317,9 +346,12 @@ int main() {
                     }
                     case 6: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> sq-root(^(1/2))\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
+                        printf(">> arithmetics >> sq-root(^(1/2)) >> result\n\n");
                         printf("%lf ^ (1/2) = %lf\n", prevResult, std::sqrt(prevResult));
                         prevResult = std::sqrt(prevResult);
                         system("pause");
@@ -327,9 +359,12 @@ int main() {
                     }
                     case 7: {
                         clearScreen();
-                        printf("Enter data\n> ");
+                        printf(">> arithmetics >> cb-root(^(1/3))\n");
+                        if(prevResult != DBL_MAX) printf("Previous result = %lf", prevResult);
+                        printf("\nEnter data > ");
                         scanf("%lf", &prevResult);
                         clearScreen();
+                        printf(">> arithmetics >> cb-root(^(1/3)) >> result\n\n");
                         printf("%lf ^ (1/3) = %lf\n", prevResult, std::cbrt(prevResult));
                         prevResult = std::sqrt(prevResult);
                         system("pause");
@@ -345,63 +380,115 @@ int main() {
                 break;
             }
             case 2:{
+                fun:
+                clearScreen();
+                bool rad = false;
+                printf(">> tri-functions\n\n");
+                printf("Select unit\n> 1 | angle(deg)\n> 2 | radian(rad)\n> 0 | return\n\n> ");
+                int r; scanf("%d",&r);
+                switch(r){
+                    case 0: goto arith;
+                    case 1: break;
+                    case 2: {
+                        rad = true;
+                        break;
+                    }
+                    default: {
+                        clearScreen();
+                        printf("Are you stupid or something? (Exception.unexpectedInput)\n");
+                        system("pause");
+                        goto fun;
+                    }
+                }
                 tri:
                 clearScreen();
+                if(rad) printf(">> tri-functions >> radian\n\n");
+                else printf(">> tri-functions >> angle\n\n");
                 printf("Enter function type\n> 1 | sine\n> 2 | cosine\n> 3 | tangent\n> 4 | cotangent\n> 5 | secant\n> 6 | cosecant\n> 0 | return\n\n> ");
                 int u; scanf("%d",&u);
                 switch (u) {
-                    case 0: break;
+                    case 0: goto fun;
                     case 1:{    //Tri-functions
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> sine\n\n");
+                        else printf(">> tri-functions >> angle >> sine\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("sin(%lf) = %lf\n", a, sin(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> sine >> result\n\n");
+                        else printf(">> tri-functions >> angle >> sine >> result\n\n");
+                        if(rad) printf("sin(%lf(rad)) = %lf\n", a, sin(a));
+                        else printf("sin(%lf(deg)) = %lf\n", a, sin(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
                     case 2:{
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> cosine\n\n");
+                        else printf(">> tri-functions >> angle >> cosine\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("cos(%lf) = %lf\n", a, cos(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> cosine >> result\n\n");
+                        else printf(">> tri-functions >> angle >> cosine >> result\n\n");
+                        if(rad) printf("cos(%lf(rad)) = %lf\n", a, cos(a));
+                        else printf("cos(%lf(deg)) = %lf\n", a, cos(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
                     case 3:{
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> tangent\n\n");
+                        else printf(">> tri-functions >> angle >> tangent\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("tan(%lf) = %lf\n", a, tan(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> tangent >> result\n\n");
+                        else printf(">> tri-functions >> angle >> tangent >> result\n\n");
+                        if(rad) printf("tan(%lf(rad)) = %lf\n", a, tan(a));
+                        else printf("tan(%lf(deg)) = %lf\n", a, tan(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
                     case 4:{
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> cotangent\n\n");
+                        else printf(">> tri-functions >> angle >> cotangent\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("cot(%lf) = %lf\n", a, 1/tan(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> cotangent >> result\n\n");
+                        else printf(">> tri-functions >> angle >> cotangent >> result\n\n");
+                        if(rad) printf("cot(%lf(rad)) = %lf\n", a, 1/tan(a));
+                        else printf("cot(%lf(deg)) = %lf\n", a, 1/tan(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
                     case 5:{
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> secant\n\n");
+                        else printf(">> tri-functions >> angle >> secant\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("sec(%lf) = %lf\n", a, 1/cos(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> secant >> result\n\n");
+                        else printf(">> tri-functions >> angle >> secant >> result\n\n");
+                        if(rad) printf("sec(%lf(rad)) = %lf\n", a, 1/cos(a));
+                        else printf("sec(%lf(deg)) = %lf\n", a, 1/cos(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
                     case 6:{
                         clearScreen();
-                        printf("Enter data\n> ");
+                        if(rad) printf(">> tri-functions >> radian >> cosecant\n\n");
+                        else printf(">> tri-functions >> angle >> cosecant\n\n");
+                        printf("Enter data > ");
                         double a; scanf("%lf", &a);
                         clearScreen();
-                        printf("csc(%lf) = %lf\n", a, 1/sin(rad(a)));
+                        if(rad) printf(">> tri-functions >> radian >> cosecant >> result\n\n");
+                        else printf(">> tri-functions >> angle >> cosecant >> result1\n\n");
+                        if(rad) printf("csc(%lf(rad)) = %lf\n", a, 1/sin(a));
+                        else printf("csc(%lf(deg)) = %lf\n", a, 1/sin(deg2rad(a)));
                         system("pause");
                         goto tri;
                     }
@@ -416,6 +503,7 @@ int main() {
             }
             case 3:{    //Equations
                 clearScreen();
+                printf(">> quad-equation\n\n");
                 printf("The Original Formula : ax^2+bx+c (a!=0)\n");
                 double a,b,c;
                 printf("Enter a: "); scanf("%lf",&a);
@@ -436,6 +524,7 @@ int main() {
                 }
                 clearScreen();
                 quad:
+                printf(">> quad-equation >> solving\n\n");
                 ePrint(a,b,c);
                 printf("with delta value %lf\n--------------------------------\n",d);
                 if(!isInt(a)||!isInt(b)||!isInt(c)) printf("Enter solving type\n> 1 | numeric\n> - cross-solve (disabled: integer coefficients only)\n> 0 | return\n\n> ");
@@ -446,6 +535,7 @@ int main() {
                     case 0: break;
                     case 1:{
                         clearScreen();
+                        printf(">> quad-equation >> solving >> numeric\n\n");
                         ePrint(a,b,c);
                         quadEquationSolve(a,b,c);
                         printf("Solution: ");
@@ -464,6 +554,7 @@ int main() {
                             goto quad;
                         }
                         clearScreen();
+                        printf(">> quad-equation >> solving >> cross-solve\n\n");
                         ePrint(a,b,c);
                         crossSolve((int)a,(int)b,(int)c);
                         printf("Solution:\n");
@@ -484,6 +575,7 @@ int main() {
             }
             case 4:{    //Statistics
                 clearScreen();
+                printf(">> statistics\n\n");
                 printf("Enter amount of data: ");
                 int inputCount=0,amount=0;
                 scanf("%d",&amount);
@@ -494,6 +586,7 @@ int main() {
                     break;
                 }
                 clearScreen();
+                printf(">> statistics\n\n");
                 printf("Enter data\n");
                 double data[amount];
                 for(double & i : data){
@@ -501,6 +594,7 @@ int main() {
                     scanf("%lf", &i);
                 }
                 clearScreen();
+                printf(">> statistics >> result\n\n");
                 int weighted = 0;
                 stat:
                 std::vector<double> vecData (data, data+amount);
@@ -541,6 +635,8 @@ int main() {
                         clearScreen();
                         for(int i=0;i<amount;i++){
                             double alt;
+                            if(amount-1) printf(">> statistics >> set weightings\n\n");
+                            else printf(">> statistics >> multiplying\n\n");
                             printf("data[%d] = %lf * ",i+1,data[i]);
                             scanf("%lf",&alt);
                             data[i] *= alt;
