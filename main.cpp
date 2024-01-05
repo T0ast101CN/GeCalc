@@ -108,6 +108,10 @@ bool isInt(double a){
     else return false;
 }
 
+bool isSquare(double a){
+    return std::sqrt(a)*std::sqrt(a) == a;
+}
+
 double variance(const std::vector<double>& data){
     double accumulate = 0;
     for(double i : data) accumulate += i;
@@ -527,8 +531,9 @@ int main() {
                 printf(">> quad-equation >> solving\n\n");
                 ePrint(a,b,c);
                 printf("with delta value %lf\n--------------------------------\n",d);
-                if(!isInt(a)||!isInt(b)||!isInt(c)) printf("Enter solving type\n> 1 | numeric\n> - cross-solve (disabled: integer coefficients only)\n> 0 | return\n\n> ");
-                else if(c==0) printf("Enter solving type\n> 1 | numeric\n> - cross-solve (disabled: c = 0)\n> 0 | return\n\n> ");
+                if(!isInt(a)||!isInt(b)||!isInt(c)) printf("Enter solving type\n> 1 | numeric\n> - | cross-solve (disabled: integer coefficients only)\n> 0 | return\n\n> ");
+                else if(c==0) printf("Enter solving type\n> 1 | numeric\n> - | cross-solve (disabled: c = 0)\n> 0 | return\n\n> ");
+                else if(!isSquare(d)) printf("Enter solving type\n> 1 | numeric\n> - | cross-solve (disabled: delta is not a square number)\n> 0 | return\n\n> ");
                 else printf("Enter solving type\n> 1 | numeric\n> 2 | cross-solve\n> 0 | return\n\n> ");
                 int u; scanf("%d",&u);
                 switch (u) {
@@ -546,7 +551,7 @@ int main() {
                         goto quad;
                     }
                     case 2:{
-                        if(c==0||!isInt(c)){
+                        if(!isInt(a)||!isInt(b)||!isInt(c)||c==0||!isSquare(d)){
                             clearScreen();
                             printf("Are you stupid or something? (Exception.unexpectedInput)\n");
                             system("pause");
