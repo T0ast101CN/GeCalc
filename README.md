@@ -7,6 +7,8 @@
 @   @ @     @   @ @   @ @  @   @   by T0astForeveR & Faver
  @@@   @@@@  @@@   @@@@  @  @@@    (c) MMXXIII
 ```
+> [!NOTE]
+>This program is officially merged into [@EDU-Group](https://github.com/EDU-Group/).
 
 # GeCalc
 General Calculator
